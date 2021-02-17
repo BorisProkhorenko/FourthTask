@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            targetNamespace="urn:Test.Namespace"
+            xmlns="urn:Test.Namespace"
+            elementFormDefault="qualified">
+
+    <xsd:element name="Candies">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="caramel-candy" type="Caramel" minOccurs="0" maxOccurs="unbounded"/>
+                <xsd:element name="chocolate-candy" type="Chocolate" minOccurs="0" maxOccurs="unbounded"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+
+    <xsd:complexType name="Candy">
+        <xsd:sequence>
+            <xsd:element name="name" type="xsd:string"/>
+            <xsd:element name="energy" type="xsd:double"/>
+        </xsd:sequence>
+        <xsd:attribute name="id" type="xsd:ID" use="required"/>
+    </xsd:complexType>
+
+    <xsd:complexType name="Caramel">
+        <xsd:complexContent>
+            <xsd:extension base="Candy">
+                <xsd:sequence>
+                    <xsd:element name="caramel" type="TypeOfCaramel"/>
+                </xsd:sequence>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+
+    <xsd:complexType name="Chocolate">
+        <xsd:complexContent>
+            <xsd:extension base="Candy">
+                <xsd:sequence>
+                    <xsd:element name="chocolate" type="TypeOfChocolate"/>
+                </xsd:sequence>
+            </xsd:extension>
+        </xsd:complexContent>
+    </xsd:complexType>
+
+    <xsd:simpleType name="TypeOfCaramel">
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="LOLLIPOP"></xsd:enumeration>
+            <xsd:enumeration value="SOFT"></xsd:enumeration>
+        </xsd:restriction>
+    </xsd:simpleType>
+
+    <xsd:simpleType name="TypeOfChocolate">
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="WHITE"></xsd:enumeration>
+            <xsd:enumeration value="BITTER"></xsd:enumeration>
+            <xsd:enumeration value="MILK"></xsd:enumeration>
+        </xsd:restriction>
+    </xsd:simpleType>
+
+</xsd:schema>
+
