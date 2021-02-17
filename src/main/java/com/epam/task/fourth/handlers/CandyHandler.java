@@ -6,7 +6,6 @@ import com.epam.task.fourth.entity.ChocolateCandy;
 import com.epam.task.fourth.enums.CandyEnum;
 import com.epam.task.fourth.enums.CaramelType;
 import com.epam.task.fourth.enums.ChocolateType;
-import com.epam.task.fourth.parsing.ParsingException;
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
@@ -20,6 +19,11 @@ public class CandyHandler extends DefaultHandler {
     private List<Candy> candies;
     private Candy current;
     private CandyEnum currentEnum;
+    private static final String SOFT = "SOFT";
+    private static final String LOLLIPOP = "LOLLIPOP";
+    private static final String MILK = "MILK";
+    private static final String BITTER = "BITTER";
+    private static final String WHITE = "WHITE";
 
 
     public CandyHandler() {
@@ -60,8 +64,6 @@ public class CandyHandler extends DefaultHandler {
         String elementString = new String(ch, start, length).trim();
         if (currentEnum != null) {
             switch (currentEnum) {
-                case CANDIES:
-                    break;
                 case NAME:
                     current.setName(elementString);
                     break;
@@ -79,11 +81,7 @@ public class CandyHandler extends DefaultHandler {
                     current = chocolateCandy;
                     break;
                 default:
-                    try {
-                        throw new ParsingException("Error in xml");
-                    } catch (ParsingException e) {
-                        e.printStackTrace();
-                    }
+                    break;
             }
         }
         currentEnum = null;
@@ -91,10 +89,10 @@ public class CandyHandler extends DefaultHandler {
 
     private void setCaramelType(CaramelCandy candy, String caramelTypeStr) {
         switch (caramelTypeStr) {
-            case "SOFT":
+            case SOFT:
                 candy.setCaramelType(CaramelType.SOFT);
                 break;
-            case "LOLLIPOP":
+            case LOLLIPOP:
                 candy.setCaramelType(CaramelType.LOLLIPOP);
                 break;
         }
@@ -103,13 +101,13 @@ public class CandyHandler extends DefaultHandler {
 
     private void setChocolateType(ChocolateCandy candy, String chocolateTypeStr) {
         switch (chocolateTypeStr) {
-            case "MILK":
+            case MILK:
                 candy.setChocolateType(ChocolateType.MILK);
                 break;
-            case "BITTER":
+            case BITTER:
                 candy.setChocolateType(ChocolateType.BITTER);
                 break;
-            case "WHITE":
+            case WHITE:
                 candy.setChocolateType(ChocolateType.WHITE);
                 break;
         }

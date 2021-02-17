@@ -1,4 +1,4 @@
-package com.epam.task.fourth.factories;
+package com.epam.task.fourth.collections;
 
 import com.epam.task.fourth.entity.Candy;
 

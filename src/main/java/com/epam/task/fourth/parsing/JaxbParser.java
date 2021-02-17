@@ -1,8 +1,10 @@
 package com.epam.task.fourth.parsing;
 
 import com.epam.task.fourth.entity.Candy;
-import com.epam.task.fourth.factories.Candies;
+import com.epam.task.fourth.collections.Candies;
 import com.epam.task.fourth.handlers.JaxbEventHandler;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.xml.sax.SAXException;
 
 import javax.xml.XMLConstants;
@@ -16,7 +18,7 @@ import java.util.List;
 
 public class JaxbParser implements Parser {
     private static final URL SCHEMA_XSD = JaxbParser.class.getResource("/candiesSchema.xsd");
-
+    private static final Logger LOGGER = LogManager.getLogger();
     @Override
     public List<Candy> parse(String filename) {
         JAXBContext context;
@@ -35,10 +37,8 @@ public class JaxbParser implements Parser {
             Candies candies = (Candies) unmarshaller.unmarshal(new File(filename));
             List<Candy> candyList = parseCandies(candies.getCandyJaxbElementList());
             return candyList;
-        } catch (JAXBException e) {
-            e.printStackTrace();
-        } catch (SAXException e) {
-            e.printStackTrace();
+        } catch (JAXBException |SAXException e) {
+            LOGGER.error("Parsing error ", e);
         }
         return null;
     }

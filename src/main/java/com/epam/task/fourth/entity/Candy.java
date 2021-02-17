@@ -1,15 +1,10 @@
 package com.epam.task.fourth.entity;
 
 import javax.xml.bind.annotation.*;
-import javax.xml.bind.annotation.adapters.CollapsedStringAdapter;
-import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 import java.util.Objects;
 
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "Candy", namespace = "urn:Test.Namespace", propOrder = {
-        "name",
-        "energy"
-})
+@XmlType(name = "Candy", namespace = "urn:Test.Namespace")
 @XmlSeeAlso({
         ChocolateCandy.class,
         CaramelCandy.class
@@ -18,8 +13,6 @@ import java.util.Objects;
 public abstract class Candy {
 
     @XmlAttribute()
-    @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
-    @XmlID
     protected String id;
     @XmlElement(name = "name", namespace = "urn:Test.Namespace", required = true)
     protected String name;

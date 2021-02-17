@@ -10,7 +10,7 @@ import java.util.Objects;
 
 
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "Chocolate", namespace = "urn:Test.Namespace", propOrder = {"chocolateType"})
+@XmlType(name = "Chocolate", namespace = "urn:Test.Namespace")
 public class ChocolateCandy extends Candy {
 
     @XmlElement(name = "chocolate", namespace = "urn:Test.Namespace", required = true)
@@ -19,8 +19,8 @@ public class ChocolateCandy extends Candy {
     public ChocolateCandy() {
     }
 
-    public ChocolateCandy(String id ,String name, double energy, ChocolateType chocolateType) {
-        super(id,name, energy);
+    public ChocolateCandy(String id, String name, double energy, ChocolateType chocolateType) {
+        super(id, name, energy);
         this.chocolateType = chocolateType;
     }
 
@@ -54,7 +54,7 @@ public class ChocolateCandy extends Candy {
     public String toString() {
         return "ChocolateCandy{" +
                 "id='" + getId() + '\'' +
-                ", name='" + getName() +
+                ", name='" + getName() + '\'' +
                 ", energy=" + getEnergy() +
                 ", chocolateType=" + chocolateType +
                 '}';

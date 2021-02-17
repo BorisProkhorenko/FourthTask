@@ -33,8 +33,7 @@ public class XmlValidator {
             try {
                 throw new ParsingException("Parsing exception");
             } catch (ParsingException ex) {
-                ex.printStackTrace();
-                LOGGER.error(filename + " config error: " + e.getMessage(), e);
+                LOGGER.error(filename + " config error: " + ex.getMessage(), e);
                 return false;
             }
 

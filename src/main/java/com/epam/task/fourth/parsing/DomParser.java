@@ -5,6 +5,8 @@ import com.epam.task.fourth.entity.CaramelCandy;
 import com.epam.task.fourth.entity.ChocolateCandy;
 import com.epam.task.fourth.enums.CaramelType;
 import com.epam.task.fourth.enums.ChocolateType;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -24,6 +26,7 @@ public class DomParser implements Parser {
     private static final String CARAMEL_CANDY = "caramel-candy";
     private static final String CHOCOLATE_CANDY = "chocolate-candy";
     private static final DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+    private static final Logger LOGGER = LogManager.getLogger();
 
     @Override
     public List<Candy> parse(String filename) {
@@ -32,7 +35,7 @@ public class DomParser implements Parser {
             addToListByTagName(candies, filename, CARAMEL_CANDY);
             addToListByTagName(candies, filename, CHOCOLATE_CANDY);
         } catch (IOException | SAXException | ParserConfigurationException e) {
-            e.printStackTrace();
+            LOGGER.error("Parsing error ", e);
         }
 
         return candies;
