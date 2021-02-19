@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Candies xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="urn:Test.Namespace"
+         xsi:schemaLocation="urn:Test.Namespace /candiesSchema.xsd">
+
+    <caramel-candy>
+        <name>Apple Pops</name>
+        <energy>0.382</energy>
+        <caramel>LOLLIPOP</caramel>
+    </caramel-candy>
+    <Candy>
+        <name>Apple Pops</name>
+        <energy>0.382</energy>
+    </Candy>
+
+    <chocolate-candy>
+        <name>Hershey's Kisses</name>
+        <energy>0.535</energy>
+        <chocolate>MILK</chocolate>
+    </chocolate-candy>
+
+</Candies>
